@@ -1,5 +1,3 @@
-# lib/db/base.py
-
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 
 # SQLite database file path
