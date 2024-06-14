@@ -1,5 +1,3 @@
-# lib/cli.py
-
 import sys
 import os
 

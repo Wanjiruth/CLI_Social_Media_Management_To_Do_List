@@ -1,5 +1,3 @@
-# models/task.py
-
 from db import CURSOR, CONN
 
 class Task:
