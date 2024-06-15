@@ -30,3 +30,16 @@ class Task:
     @staticmethod
     def from_db_row(row):
         return Task(title=row[1], description=row[2], project_id=row[3], id=row[0])
+     
+    @staticmethod
+    def delete(task_id):
+        CURSOR.execute('DELETE FROM tasks WHERE id=?', (task_id,))
+        CONN.commit()
+
+    @staticmethod
+    def find_by_id(task_id):
+        CURSOR.execute('SELECT id, title, description, project_id FROM tasks WHERE id = ?', (task_id,))
+        row = CURSOR.fetchone()
+        if row:
+            return Task.from_db_row(row)
+        return None

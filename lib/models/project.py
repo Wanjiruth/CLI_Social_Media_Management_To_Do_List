@@ -28,3 +28,17 @@ class Project:
     @staticmethod
     def from_db_row(row):
         return Project(name=row[1], id=row[0])
+
+    @staticmethod
+    def delete(project_id):
+        CURSOR.execute('DELETE FROM projects WHERE id=?', (project_id,))
+        CURSOR.execute('DELETE FROM tasks WHERE project_id=?', (project_id,))
+        CONN.commit()
+
+    @staticmethod
+    def find_by_id(project_id):
+        CURSOR.execute('SELECT id, name FROM projects WHERE id = ?', (project_id,))
+        row = CURSOR.fetchone()
+        if row:
+            return Project.from_db_row(row)
+        return None
